@@ -220,6 +220,13 @@ a { color: inherit; }
 
 .pane { padding: 26px var(--gut) 80px; min-width: 0; }
 
+.intro {
+  max-width: 74ch;
+  margin: 0 0 20px;
+  font: 15px/1.6 var(--sans);
+  color: var(--muted);
+}
+
 .list-head {
   display: flex;
   align-items: baseline;
@@ -522,7 +529,14 @@ a { color: inherit; }
   .mark-text { display: none; }
   .row-btn { grid-template-columns: 1fr; }
   .row-right { padding-top: 0; }
-  .list-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .intro {
+  max-width: 74ch;
+  margin: 0 0 20px;
+  font: 15px/1.6 var(--sans);
+  color: var(--muted);
+}
+
+.list-head { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

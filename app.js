@@ -171,6 +171,12 @@
     }
     $('#list-title').textContent = title;
 
+    var intro = $('#intro');
+    if (intro) {
+      var filteredNow = !!(state.q.trim() || state.statuses.size || state.vendors.size || state.cats.size);
+      intro.hidden = filteredNow;
+    }
+
     var slice = items.slice(0, state.shown);
     var frag = document.createDocumentFragment();
 
@@ -267,6 +273,8 @@
     var it = byId.get(state.id);
     if (!it) { closeDetail(); return; }
 
+    var introEl = $('#intro');
+    if (introEl) introEl.hidden = true;
     list.hidden = true;
     head.hidden = true;
     more.innerHTML = '';
@@ -316,6 +324,22 @@
     src.target = '_blank';
     src.rel = 'noopener noreferrer';
     foot.appendChild(src);
+    var linkBtn = el('button', 'copy', 'Ссылка на карточку');
+    linkBtn.type = 'button';
+    linkBtn.style.marginLeft = 'auto';
+    linkBtn.addEventListener('click', function () {
+      var href = location.href;
+      copyText(href).then(function () {
+        linkBtn.dataset.done = 'true';
+        linkBtn.textContent = 'Ссылка скопирована';
+        setTimeout(function () {
+          linkBtn.dataset.done = 'false';
+          linkBtn.textContent = 'Ссылка на карточку';
+        }, 1800);
+      });
+    });
+    foot.appendChild(linkBtn);
+
     if (it.archive_url) {
       var arc = el('a', null, 'веб-архив');
       arc.href = it.archive_url;
@@ -393,6 +417,7 @@
     queryTimer = setTimeout(function () {
       state.q = v;
       state.shown = 150;
+      syncQueryParam();
       render();
     }, 110);
   });
@@ -435,6 +460,17 @@
   function render() {
     renderRail();
     if (state.id) renderDetail(); else renderList();
+  }
+
+  function syncQueryParam() {
+    var url = location.pathname + (state.q.trim() ? '?q=' + encodeURIComponent(state.q.trim()) : '') + location.hash;
+    history.replaceState(history.state || {}, '', url);
+  }
+
+  var params = new URLSearchParams(location.search);
+  if (params.get('q')) {
+    state.q = params.get('q');
+    $('#q').value = state.q;
   }
 
   var initial = location.hash.match(/^#\/p\/([\w-]+)$/);
