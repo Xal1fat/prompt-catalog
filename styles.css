@@ -635,6 +635,19 @@ a { color: inherit; }
   .prompt-actions { flex-wrap: wrap; }
 }
 
+@media print {
+  body { background: #fff; color: #000; }
+
+  .bar, .rail, .colophon, .back, .prompt-actions, .stamp-btn,
+  .folio, .sort, .more, .warn { display: none !important; }
+
+  .columns { display: block; }
+  .half-title { padding: 0 0 16px; }
+  .sheet { border: 0; box-shadow: none; }
+  .prompt-frame pre { max-height: none; overflow: visible; font-size: 10pt; }
+  .row-btn:hover { background: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
