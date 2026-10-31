@@ -3,62 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Каталог промтов — официальные тексты Anthropic, OpenAI, Google, Microsoft</title>
-<meta name="description" content="Каталог промтов из официальных репозиториев и документации: системные промты Claude, библиотека Anthropic, OpenAI Cookbook, Google, Microsoft PnP. С поиском, фильтрами и копированием.">
+<title>Указатель промтов — дословные тексты Anthropic, OpenAI, Google, Microsoft</title>
+<meta name="description" content="Русский указатель промтов: системные промты Claude, примеры OpenAI Cookbook, документации Google и Microsoft PnP — дословно, со ссылкой на первоисточник.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="masthead">
-  <a class="mark" href="#" aria-label="Каталог промтов, на главную">
-    <span class="mark-glyph">¶</span>
-    <span class="mark-text">Каталог промтов</span>
+<header class="bar">
+  <a class="mark" href="#" aria-label="Указатель промтов — на главную">
+    <span class="mark-rule" aria-hidden="true"></span>
+    <span class="mark-text">Указатель промтов</span>
   </a>
 
   <div class="search" role="search">
     <label class="visually-hidden" for="q">Поиск по каталогу</label>
-    <input id="q" type="search" placeholder="Поиск: модель, техника, вендор…" autocomplete="off" spellcheck="false">
+    <input id="q" type="search" placeholder="Модель, техника, вендор" autocomplete="off" spellcheck="false">
     <kbd class="hint" aria-hidden="true">/</kbd>
   </div>
 
-  <p class="tally" id="tally"></p>
+  <p class="tally" id="tally" aria-live="polite"></p>
 </header>
 
 <main class="shell">
-  <aside class="rail" id="rail" aria-label="Фильтры"></aside>
 
-  <section class="pane" id="pane">
-    <p class="intro" id="intro">Системные промты Claude, примеры из OpenAI Cookbook, документации Google и программы Microsoft PnP — дословно из первоисточников. Отдельно лежат утечки: они подписаны и не выдаются за официальные.</p>
+  <section class="half-title" id="intro">
+    <p class="imprint">Собрано 31 октября 2026 · проверено по первоисточникам</p>
+    <p class="statement">Здесь лежат <em id="intro-count">518</em> промтов, опубликованных Anthropic, OpenAI, Google и Microsoft. Тексты приведены дословно, у каждой записи есть ссылка на источник. Утечки вынесены отдельно и подписаны — за официальные они не выдаются.</p>
+  </section>
 
-    <div class="list-head">
-      <h1 class="list-title" id="list-title">Все промты</h1>
-      <div class="list-tools">
+  <div class="columns">
+    <aside class="rail" aria-label="Оглавление и фильтры">
+      <div id="rail"></div>
+    </aside>
+
+    <section class="pane" id="pane">
+
+      <div class="pane-head">
+        <h1 class="pane-title" id="list-title">Все промты</h1>
         <label class="sort">
-          <span>Порядок</span>
+          <span class="sort-label">Порядок</span>
           <select id="sort">
             <option value="default">по вендору</option>
-            <option value="long">сначала длинные</option>
-            <option value="short">сначала короткие</option>
+            <option value="long">длинные сначала</option>
+            <option value="short">короткие сначала</option>
             <option value="alpha">по алфавиту</option>
           </select>
         </label>
       </div>
-    </div>
 
-    <ol class="rows" id="list"></ol>
-    <p class="more" id="more"></p>
-    <div class="empty" id="empty" hidden>
-      <p class="empty-title">Ничего не нашлось</p>
-      <p class="empty-text">Сбросьте фильтры или поищите по другому слову — например, «Sonnet», «extraction», «agent».</p>
-      <button class="btn" type="button" id="reset">Сбросить фильтры</button>
-    </div>
+      <ol class="index" id="list"></ol>
 
-    <article class="detail" id="detail" hidden aria-live="polite"></article>
-  </section>
+      <p class="more" id="more"></p>
+
+      <div class="empty" id="empty" hidden>
+        <p class="empty-title">Ничего не нашлось</p>
+        <p class="empty-text">Сбросьте фильтры или попробуйте другое слово: «Sonnet», «извлечение», «агент».</p>
+        <button class="stamp-btn" type="button" id="reset">Сбросить фильтры</button>
+      </div>
+
+      <article class="detail" id="detail" hidden aria-live="polite"></article>
+
+      <p class="folio" id="folio"></p>
+    </section>
+  </div>
 </main>
 
 <footer class="colophon">
-  <p>Тексты промтов приведены дословно из источников: platform.claude.com, github.com/anthropics, github.com/openai/openai-cookbook, ai.google.dev, github.com/pnp. Описания и классификация — наши.</p>
+  <div class="colophon-grid">
+    <p>Тексты промтов не переводились и не редактировались: это дословные цитаты из platform.claude.com, github.com/openai/openai-cookbook, ai.google.dev, github.com/pnp и двух публичных репозиториев с утечками.</p>
+    <p>Русскими являются интерфейс, названия и пояснения. В карточке название раздела дублируется на языке источника — чтобы запись можно было найти на GitHub.</p>
+  </div>
   <p class="colophon-meta" id="colophon-meta"></p>
 </footer>
 
